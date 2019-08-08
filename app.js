@@ -14,8 +14,8 @@ var users = require('./routes/users');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'jade');
 
 env.config();
 // uncomment after placing your favicon in /public
@@ -46,11 +46,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-const port = process.env.PORT || 2900;
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-
-
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
 });
 
 module.exports = app;
