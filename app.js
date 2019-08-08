@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var env = require('dotenv')
 var githubWebhook = require('./src/githubWebhook');
+var cors = require('cors')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -16,6 +17,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/members', githubWebhook.getMembers);
 env.config();
+app.use(cors());
+ 
 
 // view engine setup
 //app.set('views', path.join(__dirname, 'views'));
