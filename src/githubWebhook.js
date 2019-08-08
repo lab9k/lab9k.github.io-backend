@@ -25,7 +25,7 @@ module.exports= {
     {
 
         var options = {
-            uri: 'https://api.github.com/orgs/lab9k/repos',
+            uri: 'https://api.github.com/orgs/lab9k/repos?per_page=200',
             headers: {
               'User-agent':'henrivdb',
               Authorization: 'token '+ process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
