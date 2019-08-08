@@ -15,9 +15,16 @@ var users = require('./routes/users');
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.get('/members', githubWebhook.getMembers);
 env.config();
 app.use(cors());
+
+var corsOptions = {
+  origin: 'https://lab9k.gent',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.get('/members',cors(corsOptions), githubWebhook.getMembers);
+
  
 
 // view engine setup
