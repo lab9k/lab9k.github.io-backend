@@ -21,4 +21,24 @@ var corsOptions = {
 app.get('/members',cors(corsOptions), githubWebhook.getMembers);
 app.get('/repos',cors(corsOptions), githubWebhook.getRepos);
 
+/*
+const PORT = process.env.PORT || 2900;
+app.listen(PORT, () => {
+  var options = {
+    uri: 'https://api.github.com/orgs/lab9k/repos',
+    headers: {
+      'User-agent':'henrivdb',
+      Authorization: 'token '+ process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
+  }
+};
+
+request.get(options, function (error, response, body) {
+  var sortedBody = JSON.parse(body).sort(function(a, b) {
+    return parseFloat(b.pushed_at) - parseFloat(a.pushed_at);
+  });
+  console.log(sortedBody);
+});
+});
+*/
+
 module.exports = app;

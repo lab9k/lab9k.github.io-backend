@@ -13,8 +13,11 @@ module.exports= {
         };
 
         request.get(options, function (error, response, body) {
+          if(error != null)
+          {
+            console.log('error:', error);
+          }  
           res.status(200).send(body);
-          console.log('error:', error); // Print the error if one occurred
         });
 
     },
@@ -30,8 +33,14 @@ module.exports= {
         };
 
         request.get(options, function (error, response, body) {
-          res.status(200).send(body);
-          console.log('error:', error); // Print the error if one occurred
+          if(error != null)
+          {
+            console.log('error:', error);
+          }
+          var sortedBody = JSON.parse(body).sort(function(a, b) {
+            return parseFloat(b.pushed_at) - parseFloat(a.pushed_at);
+          });
+          res.status(200).send(sortedBody);
         });
 
     },
