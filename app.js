@@ -14,7 +14,6 @@ var users = require('./routes/users');
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(express.static(path.join(__dirname, 'public')));
 app.get('/members', githubWebhook.getMembers);
 env.config();
 
@@ -46,10 +45,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
+/*
 const PORT = process.env.PORT || 2900;
 app.listen(PORT, () => {
     console.log(`Our app is running on port ${ PORT }`);
-});
+});*/
 
 module.exports = app;
