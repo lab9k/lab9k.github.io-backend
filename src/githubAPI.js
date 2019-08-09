@@ -38,7 +38,7 @@ module.exports= {
             console.log('error:', error);
           }
           var sortedBody = JSON.parse(body).sort(function(a, b) {
-            return parseFloat(b.pushed_at) - parseFloat(a.pushed_at);
+            return new Date(b.updated_at) - new Date(a.updated_at);
           });
           res.status(200).send(sortedBody);
         });
