@@ -13,32 +13,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 env.config();
 app.use(cors());
 
+var whitelist = ['https://lab9k.gent']
 var corsOptions = {
-  origin: 'https://lab9k.gent',
-  optionsSuccessStatus: 200
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
 }
 
 app.get('/members',cors(corsOptions), githubAPI.getMembers);
 app.get('/repos',cors(corsOptions), githubAPI.getRepos);
-
-/*
-const PORT = process.env.PORT || 2900;
-app.listen(PORT, () => {
-  var options = {
-    uri: 'https://api.github.com/orgs/lab9k/repos',
-    headers: {
-      'User-agent':'henrivdb',
-      Authorization: 'token '+ process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
-  }
-};
-
-request.get(options, function (error, response, body) {
-  var sortedBody = JSON.parse(body).sort(function(a, b) {
-    return parseFloat(b.pushed_at) - parseFloat(a.pushed_at);
-  });
-  console.log(sortedBody);
-});
-});
-*/
 
 module.exports = app;
