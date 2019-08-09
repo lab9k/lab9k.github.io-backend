@@ -4,7 +4,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var request = require('request');
 var env = require('dotenv')
-var githubWebhook = require('./src/githubWebhook');
+var githubAPI = require('./src/githubAPI');
 var cors = require('cors')
 
 var app = express();
@@ -18,8 +18,8 @@ var corsOptions = {
   optionsSuccessStatus: 200
 }
 
-app.get('/members',cors(corsOptions), githubWebhook.getMembers);
-app.get('/repos',cors(corsOptions), githubWebhook.getRepos);
+app.get('/members',cors(corsOptions), githubAPI.getMembers);
+app.get('/repos',cors(corsOptions), githubAPI.getRepos);
 
 /*
 const PORT = process.env.PORT || 2900;
